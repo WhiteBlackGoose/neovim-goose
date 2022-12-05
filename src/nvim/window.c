@@ -5398,6 +5398,9 @@ static int check_window_scroll_resize(int *size_count, win_T **first_scroll_win,
   int tot_skipcol = 0;
 
   FOR_ALL_WINDOWS_IN_TAB(wp, curtab) {
+    if (wp->w_last_topline == 0) {
+      continue;
+    }
     const bool size_changed = wp->w_last_width != wp->w_width
                               || wp->w_last_height != wp->w_height;
     if (size_changed) {
